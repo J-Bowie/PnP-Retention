@@ -72,7 +72,7 @@ ForEach($Site in $Sites)
                     if ($i -gt 200) {
                         $JSON_Restore = "{""ids"":[$($ids.TrimEnd(","))]}"
                         Invoke-PnPSPRestMethod -Method Post -Url "$($ctx.Url)/_api/site/RecycleBin/RestoreByIds" -Content $JSON_Restore
-                        Write-Host "     Created JSON Payload to Restore files from Recycle Bin: $($_.Count) files" -ForegroundColor Yellow
+                        Write-Host "     Created JSON Payload to Restore files from Recycle Bin: $i files" -ForegroundColor Yellow
                         $ids = [string]::Empty
                         $i = 0
                         Start-Sleep -Seconds 1
@@ -82,7 +82,7 @@ ForEach($Site in $Sites)
                 if ($i -gt 0) {
                     $JSON_Restore = "{""ids"":[$($ids.TrimEnd(","))]}"
                     Invoke-PnPSPRestMethod -Method Post -Url "$($ctx.Url)/_api/site/RecycleBin/RestoreByIds" -Content $JSON_Restore
-                    Write-Host "     Created JSON Payload to Restore files from Recycle Bin: $($_.Count) files" -ForegroundColor Yellow
+                    Write-Host "     Created JSON Payload to Restore files from Recycle Bin: $i files" -ForegroundColor Yellow
                     Start-Sleep -Seconds 1
                 }
             }
