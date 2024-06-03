@@ -1,9 +1,9 @@
 ####################################
 # MODIFY THESE VARIABLES
 ####################################
-$AdminUrl = "" 		# Admin URL for SharePoint Online GEO Region / TL Admin Site
-$label = "" 		# Label Name to Remove from Files
-$csvFilePath = "" 	# Temporary CSV file to save progress
+$AdminUrl = ""      # Admin URL for SharePoint Online GEO Region / TL Admin Site
+$label = ""         # Label Name to Remove from Files
+$csvFilePath = ""   # Temporary CSV file to save progress
 ####################################
 
 function Split-Collection {
@@ -79,7 +79,7 @@ ForEach($Site in $Sites)
                     }
                 }
                 # Remainder handler
-                if ($ids.Count -gt 0) {
+                if ($i -gt 0) {
                     $JSON_Restore = "{""ids"":[$($ids.TrimEnd(","))]}"
                     Invoke-PnPSPRestMethod -Method Post -Url "$($ctx.Url)/_api/site/RecycleBin/RestoreByIds" -Content $JSON_Restore
                     Write-Host "     Created JSON Payload to Restore files from Recycle Bin: $($_.Count) files" -ForegroundColor Yellow
