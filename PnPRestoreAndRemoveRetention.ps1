@@ -38,7 +38,7 @@ function Split-Collection {
 Connect-PnPOnline -Url $AdminUrl -Interactive
 $Sites = Get-PnPTenantSite
 $AllSites = @()
-$i = 0;
+$countSites = 0;
 
 if (-Not (Test-Path -Path $csvFilePath)) {
     $header = "Site URL"
@@ -53,8 +53,8 @@ $TotalSites = $Sites.Count - $completedSites.Count
 ForEach($Site in $Sites)
 {
     if ($Site.Url -notin $completedSites) {
-        $i++;
-        Write-Progress -activity "Processing $($Site.Url)" -status "$i out of $TotalSites completed"
+        $countSites++;
+        Write-Progress -activity "Processing $($Site.Url)" -status "$countSites out of $TotalSites completed"
 
         Try
         {      
